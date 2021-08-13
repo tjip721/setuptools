@@ -845,7 +845,9 @@ class Distribution(_Distribution):
 
     def get_command_class(self, command):
         """Pluggable version of get_command_class()"""
-        if command in self.cmdclass:
+        if command == None:
+            return None
+        elif command in self.cmdclass:
             return self.cmdclass[command]
 
         eps = pkg_resources.iter_entry_points('distutils.commands', command)
